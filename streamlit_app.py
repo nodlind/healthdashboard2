@@ -1,6 +1,9 @@
 import streamlit as st
+from streamlit_gsheets import GSheetsConnection
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+st.title("🎈 Read Google Sheet as DataFrame")
+
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.read(worksheet="Daily Metrics")
+
+st.dataframe(df)
